@@ -126,15 +126,14 @@ function postHandler(request,response) {
 				return;
 			}
 
+			let products_ids = products.map(el => el.id);
+			newProduct.id = products_ids.length ? Math.max(...products_ids) + 1 : 1;
 
 			if (products.find(f => f.id == newProduct.id)) {
 			    response.statusCode = 400;
 			    response.end('Product already exists!');
 			    return;
 			}
-
-			let products_ids = products.map(el => el.id);
-			newProduct.id = products_ids.length ? Math.max(...products_ids) + 1 : 1;
 
 		    products.push(newProduct);
 		    response.statusCode = 200;
@@ -247,13 +246,8 @@ function patchHandler(request, response) {
 					response.statusCode = 404;
 					response.end('Product not found! Please make sure you are updating an existing product.');
 				} else {
-					if (productBody.name) {
-						product.name = productBody.name;
-					}
-
-					if (productBody.description) {
-						product.description = productBody.description;
-					}
+					product.name = productBody.name ? productBody.name : product.name;
+					product.description = productBody.description ? productBody.description : product.description;
 
 					response.statusCode = 200;
 					response.setHeader('Content-Type', 'application/json');
