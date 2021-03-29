@@ -167,7 +167,7 @@ function putHandler(request, response) {
 				let count = 1;
 
 				products = newArray.map(product => {
-					return { product, id: count++ }
+					return { id: count++, name: product.name, description: product.description }
 				});
 
 				response.setHeader('Content-Type', 'application/json');
@@ -196,7 +196,6 @@ function putHandler(request, response) {
 
 			if (id) {
 				const product = products.find(f => f.id == id);
-
 				if (!product) {
 					productBody["id"] = id;
 					products.push(productBody);
@@ -204,6 +203,18 @@ function putHandler(request, response) {
 					response.setHeader('Content-Type', 'application/json');
 					response.end(JSON.stringify(products));
 				} else {
+					if (!productBody.name) {
+						response.statusCode = 400;
+						response.end('Required field is empty: name');
+						return;
+					}
+
+					if (!productBody.description) {
+						response.statusCode = 400;
+						response.end('Required field is empty: description');
+						return;
+					}
+
 				    product.name = productBody.name;
 				    product.description = productBody.description;
 				    response.statusCode = 200;
