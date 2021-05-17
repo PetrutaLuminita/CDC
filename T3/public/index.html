@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <link rel="stylesheet" href="table.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h4 style="text-align: center;">Products</h4>
+
+    <div class="container">
+        <table class="ui celled table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price (RON)</th>
+                    <th>Quantity</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody id="productsTable"></tbody>
+        </table>
+
+        <div class="right">
+            <a class="button" style="cursor: pointer;" id="addProduct">Add product</a>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</body>
+
+</html>

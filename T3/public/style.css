@@ -1,0 +1,19 @@
+.container {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.right {
+    text-align: right;
+}
+
+.right .buttton {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
